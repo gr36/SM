@@ -9,8 +9,10 @@
         <p class="list-description p-summary">Social media posts from {{ .Site.Title }}</p>
     </header>
     
+    {{ $paginator := .Paginate (where .Site.Pages "Type" "post").ByDate.Reverse }}
+    
     <div class="posts-feed">
-        {{ range .Pages.ByDate.Reverse }}
+        {{ range $paginator.Pages }}
         <article class="post-card h-entry">
             <a href="{{ .Permalink }}" class="u-url post-card-link">
                 <time class="post-date dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
@@ -23,6 +25,20 @@
         </article>
         {{ end }}
     </div>
+    
+    {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination">
+        {{ if $paginator.HasPrev }}
+        <a href="{{ $paginator.Prev.URL }}" class="pagination-link pagination-prev">← Newer</a>
+        {{ end }}
+        
+        <span class="pagination-info">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+        
+        {{ if $paginator.HasNext }}
+        <a href="{{ $paginator.Next.URL }}" class="pagination-link pagination-next">Older →</a>
+        {{ end }}
+    </nav>
+    {{ end }}
 </div>
 {{ end }}
 

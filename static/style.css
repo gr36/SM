@@ -577,3 +577,33 @@ body {
     color: white;
 }
 
+/* Pagination */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.pagination-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-terracotta);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    transition: background 0.3s ease;
+}
+
+.pagination-link:hover {
+    background: var(--bg-warm);
+}
+
+.pagination-info {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+

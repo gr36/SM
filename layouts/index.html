@@ -12,7 +12,7 @@
             <div class="panel-inner">
                 <h2 class="panel-title">Read more.</h2>
                 <div class="posts-preview">
-                    {{ $posts := first 3 .Site.RegularPages.ByDate.Reverse }}
+                    {{ $posts := first 3 (where .Site.Pages "Type" "post").ByDate.Reverse }}
                     {{ range $posts }}
                     <article class="post-item h-entry">
                         <time class="post-date dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
