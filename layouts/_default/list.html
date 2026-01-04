@@ -6,7 +6,7 @@
     
     <header class="list-header">
         <h1 class="list-title p-name">{{ if .Title }}{{ .Title }}{{ else }}Posts{{ end }}</h1>
-        <p class="list-description p-summary">Social media posts from Greg Morris</p>
+        <p class="list-description p-summary">Social media posts from {{ .Site.Title }}</p>
     </header>
     
     <div class="posts-feed">
@@ -19,8 +19,10 @@
                 <div class="post-excerpt p-summary">{{ .Summary | plainify | truncate 200 }}</div>
                 {{ end }}
             </a>
+            {{ partial "microblog_syndication.html" . }}
         </article>
         {{ end }}
     </div>
 </div>
 {{ end }}
+

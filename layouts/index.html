@@ -1,15 +1,14 @@
 {{ define "main" }}
 <div class="split-container h-feed">
-    <!-- Header -->
-    <header class="site-header">
+    <header class="site-header h-card">
         <h1 class="site-title p-name">{{ .Site.Title }}</h1>
-        <p class="site-subtitle p-summary">{{ .Site.Params.subtitle }}</p>
+        <p class="site-subtitle p-note">{{ .Site.Params.subtitle }}</p>
+        <a href="{{ .Site.BaseURL }}" class="u-url" hidden></a>
+        <img src="{{ .Site.Author.avatar }}" class="u-photo" hidden alt="">
     </header>
 
-    <!-- Split Content -->
     <main class="split-content">
-        <!-- Left Panel - Social Media Posts (links to archive) -->
-        <a href="{{ "posts/" | relURL }}" class="panel panel-left">
+        <a href="{{ "archive/" | relURL }}" class="panel panel-left">
             <div class="panel-inner">
                 <h2 class="panel-title">Read more.</h2>
                 <div class="posts-preview">
@@ -23,17 +22,15 @@
                     <p class="no-posts">No posts yet.</p>
                     {{ end }}
                 </div>
-                <span class="panel-cta">View all posts →</span>
+                <span class="panel-cta">View all posts</span>
             </div>
-            <div class="panel-bg"></div>
         </a>
 
-        <!-- Right Panel - Main Blog Link -->
         <a href="{{ .Site.Params.mainBlogURL }}" class="panel panel-right" target="_blank" rel="noopener me">
             <div class="panel-inner">
                 <div class="blog-preview">
                     <div class="preview-frame">
-                        <img src="{{ .Site.Params.mainBlogImage | relURL }}" alt="gregmorris.co.uk preview" class="preview-image">
+                        <div class="preview-placeholder">gregmorris.co.uk</div>
                     </div>
                 </div>
                 <div class="blog-cta">
@@ -42,7 +39,6 @@
                     <span class="cta-arrow">→</span>
                 </div>
             </div>
-            <div class="panel-bg"></div>
         </a>
     </main>
 </div>

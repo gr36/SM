@@ -9,18 +9,23 @@
             <time class="post-date dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
             <h1 class="post-title p-name">{{ .Title }}</h1>
             <a href="{{ .Permalink }}" class="u-url" hidden>Permalink</a>
-            <a href="{{ .Site.BaseURL }}" class="p-author h-card" rel="author" hidden>{{ .Site.Title }}</a>
+            <a href="{{ .Site.BaseURL }}" class="p-author h-card" rel="author" hidden>
+                <img src="{{ .Site.Author.avatar }}" class="u-photo" alt="">
+                <span class="p-name">{{ .Site.Author.name }}</span>
+            </a>
         </header>
         
         <div class="post-content e-content">
             {{ .Content }}
         </div>
         
-        {{ with .Params.tags }}
+        {{ partial "microblog_syndication.html" . }}
+        
+        {{ with .Params.categories }}
         <footer class="post-footer">
             <div class="post-tags">
                 {{ range . }}
-                <a href="{{ "tags/" | relURL }}{{ . | urlize }}" class="p-category" rel="tag">#{{ . }}</a>
+                <a href="{{ "/categories/" | relURL }}{{ . | urlize }}" class="p-category" rel="tag">#{{ . }}</a>
                 {{ end }}
             </div>
         </footer>
@@ -28,3 +33,4 @@
     </article>
 </div>
 {{ end }}
+

@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Site.Title }}</title>
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ .Site.Params.subtitle }}">
+    
+    {{ partial "microblog_head.html" . }}
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "custom.css" | relURL }}?{{ .Site.Params.theme_seconds }}">
+    
+    {{ range .Site.Params.plugins_css }}
+    <link rel="stylesheet" href="{{ . }}">
+    {{ end }}
+    
+    {{ range $filename := .Site.Params.plugins_html }}
+    {{ partial $filename $ }}
+    {{ end }}
 </head>
-<body>
-    {{ block "main" . }}{{ end }}
-</body>
-</html>
 

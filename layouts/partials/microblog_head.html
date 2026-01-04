@@ -1,0 +1,18 @@
+{{ if ne .Kind "home" }}
+<link rel="alternate" href="{{ "feed.xml" | absURL }}" type="application/rss+xml" title="{{ $.Site.Title }}">
+<link rel="alternate" href="{{ "feed.json" | absURL }}" type="application/json" title="{{ $.Site.Title }}">
+{{ end }}
+
+{{ range .AlternativeOutputFormats -}}
+{{ printf `<link rel="%s" href="%s" type="%s" title="%s">` .Rel .Permalink .MediaType.Type $.Site.Title | safeHTML }}
+{{ end -}}
+
+<link rel="me" href="https://micro.blog/{{ .Site.Author.username }}">
+<link rel="shortcut icon" href="https://micro.blog/{{ .Site.Author.username }}/favicon.png" type="image/x-icon">
+<link rel="authorization_endpoint" href="https://micro.blog/indieauth/auth">
+<link rel="token_endpoint" href="https://micro.blog/indieauth/token">
+<link rel="subscribe" href="https://micro.blog/users/follow">
+<link rel="webmention" href="https://micro.blog/webmention">
+<link rel="micropub" href="https://micro.blog/micropub">
+<link rel="microsub" href="https://micro.blog/microsub">
+
