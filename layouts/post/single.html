@@ -1,0 +1,38 @@
+{{ define "main" }}
+<div class="single-container">
+    <nav class="back-nav">
+        <a href="{{ "/" | relURL }}" class="back-link" rel="home">← Back to home</a>
+    </nav>
+    
+    <article class="single-post h-entry">
+        <header class="post-header">
+            <time class="post-date dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
+            {{ if .Title }}
+            <h1 class="post-title p-name">{{ .Title }}</h1>
+            {{ end }}
+            <a href="{{ .Permalink }}" class="u-url" hidden>Permalink</a>
+            <a href="{{ .Site.BaseURL }}" class="p-author h-card" rel="author" hidden>
+                <img src="{{ .Site.Author.avatar }}" class="u-photo" alt="">
+                <span class="p-name">{{ .Site.Author.name }}</span>
+            </a>
+        </header>
+        
+        <div class="post-content e-content">
+            {{ .Content }}
+        </div>
+        
+        {{ partial "microblog_syndication.html" . }}
+        
+        {{ with .Params.categories }}
+        <footer class="post-footer">
+            <div class="post-tags">
+                {{ range . }}
+                <a href="{{ "/categories/" | relURL }}{{ . | urlize }}" class="p-category" rel="tag">#{{ . }}</a>
+                {{ end }}
+            </div>
+        </footer>
+        {{ end }}
+    </article>
+</div>
+{{ end }}
+
