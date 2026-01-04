@@ -154,14 +154,6 @@ body {
     gap: 0.75rem;
 }
 
-.panel-title::before {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: var(--accent-terracotta);
-    border-radius: 50%;
-}
 
 .posts-preview {
     flex: 1;

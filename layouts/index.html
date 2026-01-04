@@ -10,16 +10,15 @@
     <main class="split-content">
         <a href="{{ "archive/" | relURL }}" class="panel panel-left">
             <div class="panel-inner">
-                <h2 class="panel-title">Read more.</h2>
+                <h2 class="panel-title">Read more</h2>
                 <div class="posts-preview">
                     {{ range first 3 (where .Site.Pages "Type" "post") }}
                     <article class="post-item h-entry">
                         <time class="post-date dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
                         {{ if .Title }}
                         <h3 class="post-title p-name">{{ .Title }}</h3>
-                        {{ else }}
-                        <h3 class="post-title p-name">{{ .Summary | plainify | truncate 50 }}</h3>
                         {{ end }}
+                        <div class="post-excerpt e-content">{{ .Content }}</div>
                     </article>
                     {{ else }}
                     <p class="no-posts">No posts yet.</p>
