@@ -191,6 +191,18 @@ body {
     transition: color 0.3s ease;
 }
 
+.posts-preview .e-content {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-top: 0.5rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .panel-left:hover .posts-preview .post-title {
     color: var(--accent-terracotta);
 }

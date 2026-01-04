@@ -17,7 +17,7 @@
                 {{ if .Title }}
                 <h2 class="post-title p-name">{{ .Title }}</h2>
                 {{ end }}
-                <div class="post-excerpt p-summary">{{ .Summary | plainify | truncate 200 }}</div>
+                <div class="post-excerpt p-summary">{{ .Summary | truncate 200 }}</div>
             </a>
         </article>
         {{ end }}
