@@ -1,0 +1,704 @@
+/* ============================================
+   Greg Morris - Social Media Site
+   Modern, casual design - "its just social media"
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+:root {
+    /* Clean, warm light palette */
+    --bg-cream: #FAF8F5;
+    --bg-white: #FFFFFF;
+    --bg-warm: #F5F0E8;
+    --text-primary: #1A1A1A;
+    --text-secondary: #4A4A4A;
+    --text-muted: #8A8A8A;
+    --accent-ink: #2D3047;
+    --accent-terracotta: #C4654A;
+    --accent-sage: #7D8B6F;
+    --border-light: rgba(0, 0, 0, 0.06);
+    --border-medium: rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+    --shadow-hover: 0 20px 60px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 17px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-cream);
+    color: var(--text-primary);
+    line-height: 1.65;
+    min-height: 100vh;
+}
+
+/* ============================================
+   Split Container - Homepage Layout
+   ============================================ */
+
+.split-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+    .split-container {
+        padding: 3rem 4rem;
+    }
+}
+
+/* ============================================
+   Header
+   ============================================ */
+
+.site-header {
+    text-align: center;
+    padding: 3rem 1rem 4rem;
+}
+
+.site-title {
+    font-family: 'Outfit', -apple-system, sans-serif;
+    font-size: clamp(2.75rem, 9vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+}
+
+.site-subtitle {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+}
+
+/* ============================================
+   Split Content - Two Panels
+   ============================================ */
+
+.split-content {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .split-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* ============================================
+   Panel Base Styles
+   ============================================ */
+
+.panel {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    min-height: 420px;
+}
+
+.panel:hover {
+    transform: scale(1.015) translateY(-4px);
+}
+
+.panel-inner {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .panel-inner {
+        padding: 3rem;
+    }
+}
+
+/* ============================================
+   Left Panel - Social Media Posts
+   ============================================ */
+
+.panel-left {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.panel-left:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-terracotta);
+}
+
+.panel-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.panel-title::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-terracotta);
+    border-radius: 50%;
+}
+
+/* ============================================
+   Posts Preview
+   ============================================ */
+
+.posts-preview {
+    flex: 1;
+}
+
+.posts-preview .post-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.posts-preview .post-item:first-child {
+    padding-top: 0;
+}
+
+.posts-preview .post-item:last-child {
+    border-bottom: none;
+}
+
+.posts-preview .post-date {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.35rem;
+    display: block;
+}
+
+.posts-preview .post-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.panel-left:hover .posts-preview .post-title {
+    color: var(--accent-terracotta);
+}
+
+.panel-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-light);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-terracotta);
+    transition: gap 0.3s ease;
+}
+
+.panel-cta::after {
+    content: '→';
+    transition: transform 0.3s ease;
+}
+
+.panel-left:hover .panel-cta {
+    gap: 0.75rem;
+}
+
+.panel-left:hover .panel-cta::after {
+    transform: translateX(4px);
+}
+
+.no-posts {
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 2rem 0;
+}
+
+/* ============================================
+   Right Panel - Main Blog Link
+   ============================================ */
+
+.panel-right {
+    background: var(--accent-ink);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.panel-right:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.panel-right .panel-inner {
+    justify-content: space-between;
+}
+
+.blog-preview {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.preview-frame {
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.panel-right:hover .preview-frame {
+    transform: translateY(-8px) scale(1.02);
+}
+
+.preview-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.blog-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cta-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.cta-url {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: white;
+}
+
+.cta-arrow {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.panel-right:hover .cta-arrow {
+    transform: translateX(6px);
+    color: white;
+}
+
+/* ============================================
+   List Page - Posts Archive
+   ============================================ */
+
+.list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    min-height: 100vh;
+}
+
+.back-nav {
+    margin-bottom: 3rem;
+}
+
+.back-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-link:hover {
+    color: var(--accent-terracotta);
+}
+
+.list-header {
+    margin-bottom: 4rem;
+}
+
+.list-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+}
+
+.list-description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.posts-feed {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-card {
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.3s ease;
+}
+
+.post-card:last-child {
+    border-bottom: none;
+}
+
+.post-card-link {
+    display: block;
+    padding: 2rem 0;
+    text-decoration: none;
+    color: inherit;
+}
+
+.post-card:hover {
+    background: var(--bg-warm);
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-card .post-date {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.post-card .post-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+.post-card:hover .post-title {
+    color: var(--accent-terracotta);
+}
+
+.post-card .post-excerpt {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* ============================================
+   Single Post Page
+   ============================================ */
+
+.single-container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+    min-height: 100vh;
+}
+
+.single-post .post-header {
+    margin-bottom: 3rem;
+}
+
+.single-post .post-date {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.single-post .post-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.post-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.post-content p {
+    margin-bottom: 1.75rem;
+}
+
+.post-content a {
+    color: var(--accent-terracotta);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-thickness 0.2s ease;
+}
+
+.post-content a:hover {
+    text-decoration-thickness: 2px;
+}
+
+.post-content h2,
+.post-content h3 {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-primary);
+    margin: 3rem 0 1.25rem;
+    line-height: 1.3;
+}
+
+.post-content h2 {
+    font-size: 1.75rem;
+}
+
+.post-content h3 {
+    font-size: 1.35rem;
+}
+
+.post-content blockquote {
+    border-left: 3px solid var(--accent-terracotta);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-family: 'Outfit', sans-serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.post-content code {
+    background: var(--bg-warm);
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: 'SF Mono', Monaco, monospace;
+}
+
+.post-content pre {
+    background: var(--accent-ink);
+    color: white;
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: 2rem 0;
+}
+
+.post-content pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    margin: 2rem 0;
+}
+
+.post-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.post-tags a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent-sage);
+    text-decoration: none;
+    padding: 0.35rem 0.75rem;
+    background: rgba(125, 139, 111, 0.1);
+    border-radius: 100px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.post-tags a:hover {
+    background: var(--accent-sage);
+    color: white;
+}
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+
+@media (max-width: 600px) {
+    .split-container {
+        padding: 1.5rem;
+    }
+    
+    .site-header {
+        padding: 2rem 0.5rem 3rem;
+    }
+    
+    .panel {
+        min-height: 320px;
+    }
+    
+    .panel-inner {
+        padding: 2rem;
+    }
+    
+    .single-container,
+    .list-container {
+        padding: 2rem 1.5rem;
+    }
+    
+    .blog-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .cta-arrow {
+        align-self: flex-end;
+    }
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.site-header {
+    animation: fadeUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.panel-left {
+    animation: fadeUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.1s backwards;
+}
+
+.panel-right {
+    animation: fadeUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.2s backwards;
+}
+
+.list-header {
+    animation: fadeUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.post-card {
+    animation: fadeUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) backwards;
+}
+
+.post-card:nth-child(1) { animation-delay: 0.1s; }
+.post-card:nth-child(2) { animation-delay: 0.15s; }
+.post-card:nth-child(3) { animation-delay: 0.2s; }
+.post-card:nth-child(4) { animation-delay: 0.25s; }
+.post-card:nth-child(5) { animation-delay: 0.3s; }
+
+/* ============================================
+   Selection & Focus States
+   ============================================ */
+
+::selection {
+    background: var(--accent-terracotta);
+    color: white;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent-terracotta);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-cream);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}

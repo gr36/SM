@@ -1,0 +1,50 @@
+{{ define "main" }}
+<div class="split-container h-feed">
+    <!-- Header -->
+    <header class="site-header">
+        <h1 class="site-title p-name">{{ .Site.Title }}</h1>
+        <p class="site-subtitle p-summary">{{ .Site.Params.subtitle }}</p>
+    </header>
+
+    <!-- Split Content -->
+    <main class="split-content">
+        <!-- Left Panel - Social Media Posts (links to archive) -->
+        <a href="{{ "posts/" | relURL }}" class="panel panel-left">
+            <div class="panel-inner">
+                <h2 class="panel-title">Read more.</h2>
+                <div class="posts-preview">
+                    {{ $posts := first 3 .Site.RegularPages.ByDate.Reverse }}
+                    {{ range $posts }}
+                    <article class="post-item h-entry">
+                        <time class="post-date dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                        <h3 class="post-title p-name">{{ .Title }}</h3>
+                    </article>
+                    {{ else }}
+                    <p class="no-posts">No posts yet.</p>
+                    {{ end }}
+                </div>
+                <span class="panel-cta">View all posts →</span>
+            </div>
+            <div class="panel-bg"></div>
+        </a>
+
+        <!-- Right Panel - Main Blog Link -->
+        <a href="{{ .Site.Params.mainBlogURL }}" class="panel panel-right" target="_blank" rel="noopener me">
+            <div class="panel-inner">
+                <div class="blog-preview">
+                    <div class="preview-frame">
+                        <img src="{{ .Site.Params.mainBlogImage | relURL }}" alt="gregmorris.co.uk preview" class="preview-image">
+                    </div>
+                </div>
+                <div class="blog-cta">
+                    <span class="cta-label">Visit main blog</span>
+                    <span class="cta-url">gregmorris.co.uk</span>
+                    <span class="cta-arrow">→</span>
+                </div>
+            </div>
+            <div class="panel-bg"></div>
+        </a>
+    </main>
+</div>
+{{ end }}
+

@@ -1,0 +1,15 @@
+baseURL = 'https://micro.blog/gregmorris/'
+languageCode = 'en-gb'
+title = 'Greg Morris'
+theme = 'splitview'
+
+[params]
+  subtitle = "its just social media"
+  mainBlogURL = "https://gregmorris.co.uk"
+  mainBlogImage = "/images/gregmorris-preview.svg"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
